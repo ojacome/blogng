@@ -24,4 +24,9 @@ export class PaginaComponent implements OnInit {
     })
   }
 
+  redireccion(){
+    alert("metodo redireccion")
+    this._router.navigate(['/pagina-pruebas', 'Jesusredirec'])
+  }
+
 }
