@@ -344,6 +344,18 @@ textarea{
     border:none;
 }
 
+.year-red{
+    display: block;
+    background: red;
+    color: white;
+    padding: 5px;
+}
+.year-green{
+    display: block;
+    background: green;
+    color: white;
+    padding: 5px;
+}
 /*RESPONSIVE*/
 
 /*Desde la anchura 963px hasta la anchura 1488px de pantalla*/

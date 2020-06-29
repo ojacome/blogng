@@ -19,6 +19,23 @@
         <span class="date">
             Hace 5 minutos
         </span>
+
+        <!-- Directiva ngStyle -->
+        <!-- <span class="year" [style.background]="pelicula.year >2017 ? 'green': 'red'">
+            {{pelicula.year}}
+        </span> -->
+
+        <!-- Directiva ngClass -->
+        <!-- [class.year-green]="pelicula.year >2017 "
+            [class.year-red]="pelicula.year <=2017 " -->
+        <span class="year" 
+            [ngClass]="{
+                'year-green': pelicula.year >2017 ,
+                'year-red': pelicula.year <=2017 
+            }">
+            {{pelicula.year}}
+        </span>
+
         <a href="#">Leer más</a>
 
         <div class="clearfix"></div>
