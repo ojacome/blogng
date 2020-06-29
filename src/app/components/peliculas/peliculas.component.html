@@ -1,1 +1,29 @@
 <h1 class="subheader">peliculas works!</h1>
+
+<p>{{peliculas[0].title}}</p>
+<hr/>
+
+<p>cantidad de peliculas: {{peliculas.length}}</p>
+<hr/>
+
+<!--Listado articulos-->
+<h2>Listado de peliculas</h2>
+
+<div id="articles" *ngIf="peliculas.length > 3">
+    <article class="article-item" id="article-template" *ngFor="let pelicula of peliculas; let i = index;">
+        <div class="image-wrap">
+            <img src="{{pelicula.image}}" alt="{{pelicula.title}}" />
+        </div>
+
+        <h2>{{i}} {{pelicula.title}}</h2>
+        <span class="date">
+            Hace 5 minutos
+        </span>
+        <a href="#">Leer más</a>
+
+        <div class="clearfix"></div>
+    </article>
+
+    <!--AÑADIR ARTICULOS VIA JS-->
+
+</div>
