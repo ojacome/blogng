@@ -1,9 +1,14 @@
 <h1 class="subheader">pagina works!</h1>
 
-<div *ngIf="nombre">
+<div *ngIf="nombre else noHay">
 
     <h2>El nombre es: {{nombre}}</h2>
 </div>
+
+<ng-template #noHay>
+
+    <h2>No hay parametros por la url</h2>
+</ng-template>
 
 <button (click)="redireccion()">
     llevame al formulario
