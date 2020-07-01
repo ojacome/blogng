@@ -16,8 +16,10 @@
                 Pelicula favorita
             </h2>
 
-            <h4>{{favorita.title}}</h4>
+            <h4>{{favorita.title | uppercase}}</h4>
             
+            <h4>{{favorita.year }}</h4>
+            <h4>{{fecha | date: 'short' }}</h4>
         </div>
 
         <!--Listado articulos-->
