@@ -1,4 +1,5 @@
 import { Component, OnInit, DoCheck, OnDestroy } from '@angular/core';
+import {Pelicula} from '../../models/pelicula.model'
 
 @Component({
   selector: 'app-peliculas',
@@ -8,16 +9,16 @@ import { Component, OnInit, DoCheck, OnDestroy } from '@angular/core';
 export class PeliculasComponent implements OnInit, DoCheck, OnDestroy {
 
   public titulo: string;
-  public peliculas: Array<any>;
+  public peliculas: Pelicula[];
 
   constructor() {
 
     this.titulo = "componente pelicula tirulo"
     this.peliculas = [
-      {year: 2018, title: "Spiderman 4", image: 'https://i0.pngocean.com/files/203/497/288/spider-man-comic-book-clip-art-spiderman.jpg'},
-      {year: 2019, title: "Los vengadores ", image: 'https://i0.pngocean.com/files/203/497/288/spider-man-comic-book-clip-art-spiderman.jpg'},
-      {year: 2017, title: "supermamn ", image: 'https://as.com/meristation/imagenes/2020/05/28/noticias/1590658176_046742_1590658235_noticia_normal_recorte1.jpg'},
-      {year: 2015, title: "tittacnic", image: 'https://as.com/meristation/imagenes/2020/05/28/noticias/1590658176_046742_1590658235_noticia_normal_recorte1.jpg'},
+      new Pelicula("Spiderman 4", 2018, "https://i0.pngocean.com/files/203/497/288/spider-man-comic-book-clip-art-spiderman.jpg" ),      
+      new Pelicula(  "Los vengadores ", 2019, 'https://i0.pngocean.com/files/203/497/288/spider-man-comic-book-clip-art-spiderman.jpg'),
+      new Pelicula(  "supermamn ",  2017, 'https://as.com/meristation/imagenes/2020/05/28/noticias/1590658176_046742_1590658235_noticia_normal_recorte1.jpg'),
+      new Pelicula(  "tittacnic", 2015, 'https://as.com/meristation/imagenes/2020/05/28/noticias/1590658176_046742_1590658235_noticia_normal_recorte1.jpg'),
     ]
    }
 
