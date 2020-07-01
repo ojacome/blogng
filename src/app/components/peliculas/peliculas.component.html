@@ -3,49 +3,32 @@
 <div class="center">
     <section id="content">
 
-        <h1 class="subheader">peliculas works!</h1>
+        
 
-        <p>{{peliculas[0].title}}</p>
+        <!-- <p>{{peliculas[0].title}}</p>
         <hr />
 
         <p>cantidad de peliculas: {{peliculas.length}}</p>
-        <hr />
+        <hr /> -->
+
+        <div id="fav" *ngIf="favorita">
+            <h2 class="subheader">
+                Pelicula favorita
+            </h2>
+
+            <h4>{{favorita.title}}</h4>
+            
+        </div>
 
         <!--Listado articulos-->
         <h2>Listado de peliculas</h2>
 
-        <div id="articles" *ngIf="peliculas.length > 3">
-            <article class="article-item" id="article-template" *ngFor="let pelicula of peliculas; let i = index;">
-                <div class="image-wrap">
-                    <img src="{{pelicula.image}}" alt="{{pelicula.title}}" />
-                </div>
+        <div *ngFor="let pelicula of peliculas; let i = index;">
 
-                <h2>{{i}} {{pelicula.title}}</h2>
-                <span class="date">
-                    Hace 5 minutos
-                </span>
-
-                <!-- Directiva ngStyle -->
-                <!-- <span class="year" [style.background]="pelicula.year >2017 ? 'green': 'red'">
-            {{pelicula.year}}
-        </span> -->
-
-                <!-- Directiva ngClass -->
-                <!-- [class.year-green]="pelicula.year >2017 "
-            [class.year-red]="pelicula.year <=2017 " -->
-                <span class="year" [ngClass]="{
-                'year-green': pelicula.year >2017 ,
-                'year-red': pelicula.year <=2017 
-            }">
-                    {{pelicula.year}}
-                </span>
-
-                <a href="#">Leer más</a>
-
-                <div class="clearfix"></div>
-            </article>
-
-            <!--AÑADIR ARTICULOS VIA JS-->
+            <app-pelicula
+                [pelicula]="pelicula"
+                (MarcarFavorita)="mostrarFavorita($event)"
+            ></app-pelicula>
 
         </div>
     </section>
