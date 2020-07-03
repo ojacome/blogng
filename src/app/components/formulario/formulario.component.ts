@@ -23,7 +23,7 @@ export class FormularioComponent implements OnInit {
   }
 
   onSubmit(){
-    
+    alert("xd")
     console.log(this.user);
   }
 }
