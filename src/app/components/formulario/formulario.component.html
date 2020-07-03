@@ -54,6 +54,19 @@
 
        </form>
 
+       <div>
+
+           <h2 class="subheader">Eventos</h2>
+    
+           <button (click)="hasDadoClick()" class="btn btn-success"> dale click</button>
+    
+           <input type="text" [(ngModel)]="campo" (blur)="hasSalido()"/>
+           {{campo}}
+           <hr>
+
+           <input type="text" [(ngModel)]="campo" (keyup.enter)="hasPulsado()"/>
+           {{campo}}
+       </div>
     </section>
     <app-sidebar></app-sidebar>
 </div>
