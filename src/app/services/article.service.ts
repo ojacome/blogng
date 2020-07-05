@@ -22,8 +22,11 @@ export class ArticleService{
         return "soy el servicio de articulos"
     }
 
-    getArticles(): Observable<any>{
+    getArticles(last:any = null): Observable<any>{
 
+        if(last != null){
+            this.url_articles= `${this.url_articles}/true`
+        }
         return this._http.get(this.url_articles);
     }
 }
