@@ -206,10 +206,21 @@ body {
    transition: 300ms all;
    border: none;
    cursor:pointer;
+   text-align: center;
 }
 
 .btn-success{
     background: rgb(23, 150, 19);
+}
+
+.btn-warning{
+    background: rgb(248, 195, 50);
+    color: white;    
+}
+
+.btn-danger{
+    background: rgb(221, 78, 43);
+    color: white !important;
 }
 
 .btn-success:hover{
