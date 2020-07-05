@@ -1,10 +1,12 @@
 import { Component, OnInit, DoCheck, OnDestroy } from '@angular/core';
 import {Pelicula} from '../../models/pelicula.model'
+import {PeliculaService} from '../../services/peliculas.service'
 
 @Component({
   selector: 'app-peliculas',
   templateUrl: './peliculas.component.html',
-  styleUrls: ['./peliculas.component.css']
+  styleUrls: ['./peliculas.component.css'],
+  providers: [PeliculaService]
 })
 export class PeliculasComponent implements OnInit, DoCheck, OnDestroy {
 
@@ -13,21 +15,20 @@ export class PeliculasComponent implements OnInit, DoCheck, OnDestroy {
   public favorita: Pelicula;
   public fecha: any;
 
-  constructor() {
+  constructor(
+    private _peliculaService: PeliculaService
+  ) {
 
     this.titulo = "componente pelicula tirulo"
-    this.peliculas = [
-      new Pelicula("Spiderman 4", 2018, "https://i0.pngocean.com/files/203/497/288/spider-man-comic-book-clip-art-spiderman.jpg" ),      
-      new Pelicula(  "Los vengadores ", 2019, 'https://i0.pngocean.com/files/203/497/288/spider-man-comic-book-clip-art-spiderman.jpg'),
-      new Pelicula(  "supermamn ",  2017, 'https://as.com/meristation/imagenes/2020/05/28/noticias/1590658176_046742_1590658235_noticia_normal_recorte1.jpg'),
-      new Pelicula(  "tittacnic", 2015, 'https://as.com/meristation/imagenes/2020/05/28/noticias/1590658176_046742_1590658235_noticia_normal_recorte1.jpg'),
-    ];
+    this.peliculas = this._peliculaService.getPeliculas()
     this.fecha = new Date(2020,8,12)
    }
 
 
   ngOnInit(): void {
 
+    console.log(this._peliculaService.holaMundo()
+      )
   }
 
 
