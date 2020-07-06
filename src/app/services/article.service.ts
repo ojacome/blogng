@@ -33,4 +33,9 @@ export class ArticleService{
     getArticle(articleId: any): Observable<any>{
         return this._http.get(`${this.url_articles}/article/${articleId}`)
     }
+
+    search(searchString: any): Observable<any>{
+
+        return this._http.get(`${this.url_articles}/search/${searchString}`)
+    }
 }
