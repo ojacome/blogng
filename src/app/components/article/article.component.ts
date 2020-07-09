@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ArticleService } from 'src/app/services/article.service';
 import { Article } from 'src/app/models/article.model';
-import { ActivatedRoute, Router } from '@angular/router';
 import { Global } from 'src/app/services/global';
+import { ActivatedRoute, Router } from '@angular/router';
+import swal from 'sweetalert';
 
 @Component({
   selector: 'app-article',
@@ -54,20 +55,42 @@ export class ArticleComponent implements OnInit {
 
   delete(id){
 
-    this._articleService.delete(id).subscribe(
-      response => {
+    swal({
+      title: "Seguro de eliminar el articulo?",
+      text: "No podrás recuperar los datos!",
+      icon: "warning",
+      buttons: [true, true],
+      dangerMode: true
+    })
+    .then((willDelete) => {
+      if (willDelete) {
 
-        if(response.status =="success"){
-          alert("El articulo ha sido eliminado")
-          this._router.navigate(['/blog'])
-        }
-      },
-      error =>{
+        this._articleService.delete(id).subscribe(
+          response => {
+    
+            if(response.status =="success"){
+              swal("Articulo Eliminado!", {
+                icon: "success",
+              });
+              // alert("El articulo ha sido eliminado")
+              this._router.navigate(['/blog'])
+            }
+          },
+          error =>{
+    
+            swal(error.error.message, {
+              icon: "success",
+            });
+            // alert(error.error.message)
+            console.log(error)
+            this._router.navigate(['/blog'])        
+          }
+        )        
 
-        alert(error.error.message)
-          console.log(error)
-          this._router.navigate(['/blog'])        
       }
-    )
+    });
+
+
+    
   }
 }

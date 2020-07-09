@@ -3,6 +3,7 @@ import { ArticleService } from 'src/app/services/article.service';
 import { Article } from 'src/app/models/article.model';
 import { Global } from 'src/app/services/global';
 import { Router, ActivatedRoute } from '@angular/router';
+import swal from 'sweetalert';
 
 @Component({
   selector: 'app-article-edit',
@@ -64,12 +65,23 @@ export class ArticleEditComponent implements OnInit {
 
         if(response.status=="success"){
           this.article = response.article;
-          alert("articulo guardado con exito")
+
+          swal(
+            "Articulo editado",
+            "El articulo se ha guardado correctamente",
+            "success"
+          )
+          // alert("articulo guardado con exito")
           console.log(response)
         }        
       },
       error =>{
-        alert(error.error.message)
+        swal(
+          "Error",
+          "error.error.message",
+          "error"
+        )
+        // alert(error.error.message)
         console.log(error)
       }
     )

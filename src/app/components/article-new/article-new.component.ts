@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ɵSWITCH_COMPILE_INJECTABLE__POST_R3__ } from '@angular/core';
 import { Article } from 'src/app/models/article.model';
 import { ThrowStmt } from '@angular/compiler';
 import { ArticleService } from 'src/app/services/article.service';
 import { Global } from 'src/app/services/global';
+import swal from 'sweetalert';
+
 
 @Component({
   selector: 'app-article-new',
@@ -15,7 +17,7 @@ export class ArticleNewComponent implements OnInit {
   public article: Article;
   public page_title: string
   url_image: string;
-  
+
   afuConfig = {
       multiple: false,
       formatsAllowed: ".jpg,.png,.jpeg",
@@ -60,12 +62,23 @@ export class ArticleNewComponent implements OnInit {
 
         if(response.status=="success"){
           this.article = response.article;
-          alert("articulo guardado con exito")
+
+          swal(
+            "Articulo creado",
+            "El articulo se ha creado correctamente",
+            "success"
+          )
+          // alert("articulo guardado con exito")
           console.log(response)
         }        
       },
       error =>{
-        alert(error.error.message)
+        swal(
+          "Error",
+          "error.error.message",
+          "error"
+        )
+        // alert(error.error.message)
         console.log(error)
       }
     )
