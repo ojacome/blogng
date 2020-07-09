@@ -1,19 +1,21 @@
 import { Component, OnInit } from '@angular/core';
-import { Article } from 'src/app/models/article.model';
-import { ThrowStmt } from '@angular/compiler';
 import { ArticleService } from 'src/app/services/article.service';
+import { Article } from 'src/app/models/article.model';
 import { Global } from 'src/app/services/global';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'app-article-new',
-  templateUrl: './article-new.component.html',
-  styleUrls: ['./article-new.component.css'],
+  selector: 'app-article-edit',
+  templateUrl: '../article-new/article-new.component.html',
+  styleUrls: ['./article-edit.component.css'],
   providers: [ArticleService]
 })
-export class ArticleNewComponent implements OnInit {
+export class ArticleEditComponent implements OnInit {
 
   public article: Article;
+  public is_edit: boolean;
   public page_title: string
+  public url_image: string;
 
   afuConfig = {
       multiple: false,
@@ -36,23 +38,28 @@ export class ArticleNewComponent implements OnInit {
         afterUploadMsg_error: 'Upload Failed !',
         sizeLimit: 'Size Limit'
       }
-  };
-
+    };
+    
+    
   constructor(
-    private _articleService: ArticleService
+    private _articleService: ArticleService,
+    private _router: Router,
+    private _route: ActivatedRoute
   ) { 
     this.article = new Article("", "", "", null, null);
-    this.page_title = "Crear Artículo"
+    this.is_edit = true;
+    this.page_title = "Editar Artículo",
+    this.url_image= `${Global.url}articles/get-image/`
   }
-
   ngOnInit(): void {
+    this.getArticle();
   }
 
   onSubmit(){
     
     console.log(this.article)
 
-    this._articleService.create(this.article).subscribe(
+    this._articleService.update(this.article._id, this.article).subscribe(
       response =>{
 
         if(response.status=="success"){
@@ -74,4 +81,31 @@ export class ArticleNewComponent implements OnInit {
     this.article.image = image_data.image;
   }
 
+  getArticle(){
+    this._route.params.subscribe(params => {
+      let id = params['id']
+
+      this._articleService.getArticle(id).subscribe(
+        response => {
+
+          if(response.status =="success"){
+
+            this.article = response.article;
+          }else{
+
+            alert(response.message)
+            console.log(response.message)
+            ;
+          }
+        },
+
+        error => {
+          alert(error.error.message)
+          console.log(error)
+          this._router.navigate(['/home'])
+        }
+      )
+
+    })
+  }
 }
