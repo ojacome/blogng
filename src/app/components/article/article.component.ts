@@ -52,4 +52,22 @@ export class ArticleComponent implements OnInit {
     })
   }
 
+  delete(id){
+
+    this._articleService.delete(id).subscribe(
+      response => {
+
+        if(response.status =="success"){
+          alert("El articulo ha sido eliminado")
+          this._router.navigate(['/blog'])
+        }
+      },
+      error =>{
+
+        alert(error.error.message)
+          console.log(error)
+          this._router.navigate(['/blog'])        
+      }
+    )
+  }
 }

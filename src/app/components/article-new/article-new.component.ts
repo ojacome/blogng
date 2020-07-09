@@ -14,7 +14,8 @@ export class ArticleNewComponent implements OnInit {
 
   public article: Article;
   public page_title: string
-
+  url_image: string;
+  
   afuConfig = {
       multiple: false,
       formatsAllowed: ".jpg,.png,.jpeg",
@@ -37,12 +38,14 @@ export class ArticleNewComponent implements OnInit {
         sizeLimit: 'Size Limit'
       }
   };
+  
 
   constructor(
     private _articleService: ArticleService
   ) { 
     this.article = new Article("", "", "", null, null);
-    this.page_title = "Crear Artículo"
+    this.page_title = "Crear Artículo";
+    this.url_image= `${Global.url}articles/get-image/`
   }
 
   ngOnInit(): void {
